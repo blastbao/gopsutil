@@ -35,6 +35,9 @@ type Invoker interface {
 	CommandWithContext(context.Context, string, ...string) ([]byte, error)
 }
 
+
+
+
 type Invoke struct{}
 
 func (i Invoke) Command(name string, arg ...string) ([]byte, error) {
@@ -44,8 +47,10 @@ func (i Invoke) Command(name string, arg ...string) ([]byte, error) {
 }
 
 func (i Invoke) CommandWithContext(ctx context.Context, name string, arg ...string) ([]byte, error) {
+
 	cmd := exec.CommandContext(ctx, name, arg...)
 
+	//
 	var buf bytes.Buffer
 	cmd.Stdout = &buf
 	cmd.Stderr = &buf
@@ -60,6 +65,7 @@ func (i Invoke) CommandWithContext(ctx context.Context, name string, arg ...stri
 
 	return buf.Bytes(), nil
 }
+
 
 type FakeInvoke struct {
 	Suffix string // Suffix species expected file name suffix such as "fail"

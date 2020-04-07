@@ -6,7 +6,7 @@ package host
 import (
 	"context"
 
-	"github.com/shirou/gopsutil/internal/common"
+	"github.com/blastbao/gopsutil/internal/common"
 )
 
 func SensorsTemperatures() ([]TemperatureStat, error) {
